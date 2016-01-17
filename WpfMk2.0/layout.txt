@@ -1,0 +1,12 @@
+display area
+	fontsize 26
+	fontheight 20
+	offset 5+6
+window area
+	orignalheight 305
+	addjustedheight 182
+	offset 123
+down warnline
+	orignalheight 280
+
+BEETWN 12

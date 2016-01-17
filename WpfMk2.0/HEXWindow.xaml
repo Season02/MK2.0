@@ -1,0 +1,137 @@
+﻿<Window x:Class="WpfMk2._0.HEXWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HEXWindow" Height="370" Width="405" Background="#000000" ResizeMode="NoResize" WindowStyle="None"  AllowsTransparency="true" >
+    <Grid>
+                <Canvas x:Name="warningLine0" Margin="-60,0,0,0" >
+                    <StackPanel  Orientation="Horizontal">
+                        <StackPanel.RenderTransform>
+                            <SkewTransform AngleX="-45" CenterX="0" CenterY="0"></SkewTransform>
+                        </StackPanel.RenderTransform>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                        <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                    </StackPanel>
+                </Canvas>
+
+                <StackPanel Orientation="Vertical" Margin="0,26,0,0"  >
+                    <Border x:Name="TopContainerBorder" Height="70" Margin="0,0,0,0" MouseLeftButtonDown="TopContainerBorder_MouseLeftButtonDown" Loaded="TopContainerBorder_Loaded" >
+                        <Border.Background>
+                            <RadialGradientBrush GradientOrigin="0,0" Center="1,1" RadiusX="10" RadiusY="10">
+                                <GradientStop Color="#CC0000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.25"></GradientStop>
+                            </RadialGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+                                <Border Background="#000000" Height="6" Margin="0,0,0,0" Width="525"></Border>
+                            </StackPanel>
+                            <StackPanel TextBlock.Foreground="#FFFFFF" HorizontalAlignment="Right" Margin="0,5,5,0" Orientation="Horizontal" VerticalAlignment="Top">
+                                <TextBlock x:Name="FeedBackTextBlock" Margin="5">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect Color="Black" Direction="-30" ShadowDepth="5" Opacity="0.6" />
+                                    </TextBlock.Effect>
+                                FEEDBACK
+                                </TextBlock>
+                                <TextBlock x:Name="CloseWindowTextBlock" Margin="5" Text="CANCLE" PreviewMouseLeftButtonUp="CloseWindowTextBlock_PreviewMouseLeftButtonUp" PreviewMouseLeftButtonDown="CloseWindowTextBlock_PreviewMouseLeftButtonDown">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect Color="Black" Direction="-30" ShadowDepth="5" Opacity="0.6" />
+                                    </TextBlock.Effect>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="#000000" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top">
+                                <StackPanel.Effect>
+                                    <DropShadowEffect ShadowDepth="0"  
+                                  Color="#FFFFFF"  
+                                  Opacity="1"  
+                                  BlurRadius="10"/>
+                                </StackPanel.Effect>
+                                <TextBlock x:Name="TitleTextBlock" FontSize="26" Foreground="#FFFFFF" Margin="5,10,0,0" Text="控制台"></TextBlock>
+                                <TextBlock x:Name="ConsoleTextBlock" FontSize="12" Foreground="#FFFFFF" Margin="5,0,0,0" Text="CONSOLE"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="DisplayArea" Height="211" Background="#000000" Margin="0,0,0,0" >
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="0"  
+                                      Color="#FF8800"  
+                                      Opacity="1"  
+                                      BlurRadius="20"/>
+                        </Border.Effect>
+                        <StackPanel Margin="10,14,10,10" Orientation="Vertical">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="Center" Text="COMMAND:" FontSize="16"  Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800" />
+                                <TextBox x:Name="TextBlockCommand" Margin="0,10,0,0" TextWrapping="NoWrap" BorderThickness="1" Text="calculate" FontSize="18" BorderBrush="#FF8800" Background="Transparent"  Foreground="#FF8800"/>
+                                <Button x:Name="ButtonCommand" HorizontalAlignment="Center" Margin="0,10,0,0"  BorderThickness="1" Content="EXECUTE!" FontSize="18" BorderBrush="#FF8800" Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800" />
+                            </StackPanel>
+                            <Border Margin="0,18,0,0" Height="1" Background="#FF8800" ></Border>
+                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="Center" Text="HEX:" FontSize="16"  Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800" />
+                                <Grid HorizontalAlignment="Stretch" >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <TextBox x:Name="TextBoxIndexHEX" Width="120" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" BorderThickness="1" Text="00" FontSize="18" BorderBrush="#FF8800" Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800"/>
+                                        <TextBlock  Text="0X" Margin="10,12,4,0" FontSize="20"  Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800" />
+                                        <TextBox x:Name="TextBoxHEX" Margin="0,10,0,0" Width="120"  TextWrapping="NoWrap" BorderThickness="1" Text="00" FontSize="18" BorderBrush="#FF8800" Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800"/>
+                                    </StackPanel>
+                                    <Button x:Name="ButtonHEX" HorizontalAlignment="Right" Margin="0,10,0,0"  BorderThickness="1" Content="SUBMIT!" FontSize="18" BorderBrush="#FF8800" Background="Transparent" FontFamily="proxy 1" Foreground="#FF8800" PreviewMouseLeftButtonUp="ButtonHEX_PreviewMouseLeftButtonUp" />
+
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="BottemBoder" Height="37"  Margin="0,0,0,0" Background="#CC0000">
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Center" Margin="0,11,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+                                <TextBlock Margin="0,0,0,0" Foreground="#FFFFFF" FontFamily="proxy 1" Text="GOD IS IN HIS HEAVEN . ALL'S RIGHT WITH THE WORLD."></TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <Border Background="#000000" Height="6" Margin="0,0,0,0" Width="525"></Border>
+                            </StackPanel>
+                            <StackPanel Margin="10,5,10,0" Orientation="Horizontal" VerticalAlignment="Top">
+                                <Border Background="#FFFFFF" Height="1" Margin="0,0,0,0" Width="525"></Border>
+                            </StackPanel>
+                            <Canvas x:Name="warningLine1" Margin="-60,0,0,0" VerticalAlignment="Bottom" >
+                                <StackPanel x:Name="downWarningLine" Orientation="Horizontal" Margin="0,0,0,0">
+                                    <StackPanel.RenderTransform>
+                                        <SkewTransform AngleX="-45" CenterX="0" CenterY="0"></SkewTransform>
+                                    </StackPanel.RenderTransform>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                    <Border Background="#CC0000" Height="26" Margin="0,0,26,0" Width="26"></Border>
+                                </StackPanel>
+                            </Canvas>
+
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+            </Grid>      
+</Window>
