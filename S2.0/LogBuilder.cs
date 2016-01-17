@@ -22,6 +22,11 @@ namespace S2_0
             MessageBox.Show("Hi");
         }
 
+        static public void getBuilder()
+        {
+
+        }
+
         static public void buildLog(String str)
         {
             try
