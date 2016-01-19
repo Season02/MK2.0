@@ -55,14 +55,9 @@ namespace S2_0
                     {
                         //TEST MESSAGE
                         case (int)Keys.Q:
-                            Thread t = new Thread(new ThreadStart(() =>
-                            {
-                                NotifyForm nf = new NotifyForm();
-                                nf.ShowDialog();
-                                System.Media.SystemSounds.Asterisk.Play();
-                            }));
-                            t.IsBackground = true;
-                            t.Start();
+                            NotifyForm nf = new NotifyForm();
+                            nf.ShowDialog();//showDialog() method will block the code behind
+                            System.Media.SystemSounds.Asterisk.Play();
                             
                             break;
 
@@ -110,7 +105,8 @@ namespace S2_0
                             break;
                     }
 
-                }if ( mkh.keyLock == true )
+                }
+                if ( mkh.keyLock == true )
                 {
                     LogBuilder.buildLog("Illegality KeyBord input: " + e.KeyData);
                     //MessageBox.Show("Illegality Operation!");                    

@@ -6,34 +6,40 @@ using System.Windows.Forms;
 
 using System.Threading;
 using System.Threading.Tasks;
-
+ 
 namespace S2_0
 {
     class LogBuilder
     {
-        static private System.Timers.Timer logTimer = new System.Timers.Timer(1000);//Timer for log
-        static private List<String> buffer = new List<String>();//buffer for reade to write to log file
-        static System.IO.FileStream fs;
-        static System.IO.StreamWriter sw;
+        private System.Timers.Timer logTimer = new System.Timers.Timer(1000);//Timer for log
+        private static List<String> buffer = new List<String>();//buffer for reade to write to log file
+        private System.IO.FileStream fs;
+        private System.IO.StreamWriter sw;
 
-        static public LogBuilder()
+        private static readonly LogBuilder instance = new LogBuilder();//CLR will deal with the multy thread problem
+
+        private LogBuilder()
         {
             init();
-            MessageBox.Show("Hi");
         }
 
-        static public void getBuilder()
+        public static LogBuilder getBuilder()
         {
-
+            return instance;
         }
 
-        static public void buildLog(String str)
+        public void addLog(String log)
+        {
+            buffer.Add(log);
+        }
+
+        public static void buildLog(String str)
         {
             try
             {
                 lock(buffer)
                 {
-                    buffer.Add(str);
+                    getBuilder().addLog(str);
                 }           
             }
             catch (Exception e)
@@ -43,7 +49,7 @@ namespace S2_0
             
         }
 
-        private static void init()
+        private void init()
         {
             logTimer.Elapsed += new System.Timers.ElapsedEventHandler((object sender, System.Timers.ElapsedEventArgs e) =>
             {
@@ -71,14 +77,10 @@ namespace S2_0
                 {
                     System.Windows.MessageBox.Show(ex.Message);
                 }
-            });//Guard Service
+            });
             logTimer.AutoReset = true; //每到指定时间Elapsed事件是触发一次（false），还是一直触发（true）
             logTimer.Enabled = true; //是否触发Elapsed事件
             logTimer.Start();
-        }
-
-        private void builder()
-        {
         }
 
     }
