@@ -23,8 +23,8 @@ namespace S2_0
         private Thread thread = null;
         //Socket[] socConnection = new Socket[1024];//consumanle temp socket
         List<Thread> threadCol = new List<Thread>();
-        List<Socket> socketCol = new List<Socket>();
-
+        public List<Socket> socketCol = new List<Socket>();
+        
         private int clientNum = 0;
 
         public Byte[] feedBacks = new Byte[1024];// Received command

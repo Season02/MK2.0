@@ -56,7 +56,7 @@ namespace S2_0
                         //TEST MESSAGE
                         case (int)Keys.Q:
                             NotifyForm nf = new NotifyForm();
-                            nf.ShowDialog();//showDialog() method will block the code behind
+                            nf.ShowDialog();//showDialog() method will block the code behind                            
                             System.Media.SystemSounds.Asterisk.Play();
                             
                             break;
@@ -81,9 +81,19 @@ namespace S2_0
 
                         //OPEN FileSelectiorForm
                         case (int)Keys.D1:
-                            System.Media.SystemSounds.Asterisk.Play();
-                            FileSelectorForm fileform = new FileSelectorForm(this);
-                            fileform.ShowDialog();
+                            Thread t = new Thread(new ThreadStart(()=>
+                            {
+                                FileSelectorForm fileform = new FileSelectorForm(this);
+                                fileform.ShowDialog();
+                            }));
+                            t.IsBackground = true;
+                            t.Start();
+                            Thread.Sleep(256);
+                            foreach (Socket socket in form1.socketCol)
+                            if(socket.Connected)
+                            {
+                                FileSelectorForm_Event(this, socket.RemoteEndPoint.ToString(), form1.socketCol.IndexOf(socket));
+                            }
                             //FileSelectorForm_Event(this, socketCol[0].AddressFamily.ToString(), 007);
                             break;
 
