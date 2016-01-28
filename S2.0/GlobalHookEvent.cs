@@ -17,6 +17,8 @@ namespace S2_0
         public delegate void FileSelectorForm_Event_Handler(object sender, String ip, int index);
         public event FileSelectorForm_Event_Handler FileSelectorForm_Event;
 
+        FileSelectorForm fileform;
+
         public void initKeyMouseHook(Form1 form1)
         {
             this.form1 = form1;
@@ -81,20 +83,24 @@ namespace S2_0
 
                         //OPEN FileSelectiorForm
                         case (int)Keys.D1:
-                            Thread t = new Thread(new ThreadStart(()=>
+                            if(fileform == null)
                             {
-                                FileSelectorForm fileform = new FileSelectorForm(this);
-                                fileform.ShowDialog();
-                            }));
-                            t.IsBackground = true;
-                            t.Start();
-                            Thread.Sleep(256);
-                            foreach (Socket socket in form1.socketCol)
-                            if(socket.Connected)
-                            {
-                                FileSelectorForm_Event(this, socket.RemoteEndPoint.ToString(), form1.socketCol.IndexOf(socket));
+                                Thread t = new Thread(new ThreadStart(() =>
+                                {
+                                    fileform = new FileSelectorForm(this);
+                                    fileform.ShowDialog();
+                                    fileform = null;
+                                }));
+                                t.IsBackground = true;
+                                t.Start();
+                                Thread.Sleep(256);
+                                foreach (Socket socket in form1.socketCol)
+                                if (socket.Connected)
+                                {
+                                    FileSelectorForm_Event(this, socket.RemoteEndPoint.ToString(), form1.socketCol.IndexOf(socket));
+                                }
                             }
-                            //FileSelectorForm_Event(this, socketCol[0].AddressFamily.ToString(), 007);
+                            
                             break;
 
                         case (int)Keys.D2:
@@ -103,6 +109,9 @@ namespace S2_0
                                 FileSelectorForm_Event(this, "10086", 0);
                             break;
 
+                        case (int)Keys.D8:
+                            LogBuilder.getBuilder().emptyLog();
+                            break;
                         case (int)Keys.D9:
                             setKeyMouseLock();
                             break;

@@ -28,29 +28,28 @@ namespace S2_0
 
         private void updataList(Object sender,String ip,int index)
         {
-            this.host_lv.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
-
-            ListViewItem lvi = new ListViewItem();
+            var lvi = new ListViewItem();
             lvi.Text = ip + " " + index;
             lvi.SubItems.Add("Online");
             lvi.SubItems.Add(index.ToString());
-            this.host_lv.Items.Add(lvi);
-
-            this.host_lv.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+            host_lv.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            host_lv.Items.Add(lvi);
+            //host_lv.Items[host_lv.Items.Count - 1].EnsureVisible();//滚动到最后  
+            host_lv.EndUpdate();  //结束数据处理，UI界面一次性绘制。
         }
 
         void initLV()
         {
-            ColumnHeader ch = new ColumnHeader();
-            ch.Text = "HOST IP";   //设置列标题
-            ch.Width = 180;    //设置列宽度
-            ch.TextAlign = HorizontalAlignment.Center;   //设置列的对齐方式
-            this.host_lv.Columns.Add(ch);    //将列头添加到ListView控件。
-
-            this.host_lv.Columns.Add("STATUE", 120, HorizontalAlignment.Center); //一步添加
-            this.host_lv.Columns.Add("INDEX", 120, HorizontalAlignment.Center); //一步添加
-
+            host_lv.Columns.Add("HOST", 165,HorizontalAlignment.Center);//将列头添加到ListView控件。
+            host_lv.Columns.Add("STATUE", 120, HorizontalAlignment.Center);
+            host_lv.Columns.Add("INDEX", 120, HorizontalAlignment.Center);
         }
 
+        private void host_lv_Click(object sender, EventArgs e)
+        {
+            int selectCount = host_lv.SelectedItems.Count; //SelectedItems.Count就是：取得值，表示SelectedItems集合的物件数目。 
+            MessageBox.Show("select index:" + host_lv.SelectedIndices[0] +"\r\n" +
+                host_lv.Items[host_lv.SelectedIndices[0]].SubItems[1].Text );
+        }
     }
 }

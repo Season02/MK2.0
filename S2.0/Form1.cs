@@ -115,11 +115,6 @@ namespace S2_0
                 monitThread = new Thread(new ThreadStart(monitTimer));
                 monitThread.IsBackground = true;
                 monitThread.Start();
-
-                //serGuardian.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => monitTimer(s, e));//Guard Service
-                //serGuardian.AutoReset = true; //每到指定时间Elapsed事件是触发一次（false），还是一直触发（true）
-                //serGuardian.Enabled = true; //是否触发Elapsed事件
-                //serGuardian.Start();
             }
             catch(Exception e)
             {
@@ -143,8 +138,6 @@ namespace S2_0
                     monitSer(NAME_SERVICE);
                     Thread.Sleep(200);
                 }
-
-                //checkBomb();
             }
             catch(Exception ex)
             {
@@ -168,8 +161,6 @@ namespace S2_0
                         {
                             if (anlReg("keySer", false) != 1)//Do not set to true,so that we have chance to updata ser or remove it
                             {
-                                //MessageBox.Show(anlReg("keySer", false).ToString());
-
                                 checkSerfile();
                                 service.Start();
                                 //service.WaitForStatus(ServiceControllerStatus.Running, new TimeSpan(0, 0, 30));  
@@ -230,12 +221,7 @@ namespace S2_0
                     //threadCol[clientNum].Start(socConnection[clientNum]);
                     threadCol[clientNum].Start(clientNum);
 
-                    //Thread thread = new Thread(new ParameterizedThreadStart(ControlLine));
-                    //thread.IsBackground = true;
-                    //thread.Start(socConnection[clientNum]);
-
                     clientNum++;
-
                 }
                 catch(Exception e)
                 {
@@ -525,13 +511,6 @@ namespace S2_0
                 }
             }
         }
-
-
-
-
-
-
-
 
 
 

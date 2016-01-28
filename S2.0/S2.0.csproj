@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adjustVolume.cs" />
+    <Compile Include="BCrypt.cs" />
     <Compile Include="classControl.cs" />
     <Compile Include="FileSelectorForm.cs">
       <SubType>Form</SubType>
